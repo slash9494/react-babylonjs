@@ -245,7 +245,6 @@ const useSceneLoaderWithCache = (): ((
                   const { size } = await response.blob()
                   totalSize = size
                 }
-
                 if (opts.reportProgress === true && sceneLoaderContext !== undefined) {
                   sceneLoaderContext!.updateProgress({ ...event, total: totalSize })
                 }
