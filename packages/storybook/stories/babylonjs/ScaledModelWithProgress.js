@@ -1,28 +1,18 @@
-import { Color3, Matrix, Vector3 } from "@babylonjs/core/Maths/math";
-import React, { Suspense, useContext } from "react";
-import {
-  Model,
-  SceneLoaderContext,
-  SceneLoaderContextProvider,
-} from "react-babylonjs";
+import { Color3, Matrix, Vector3 } from '@babylonjs/core/Maths/math'
+import React, { Suspense, useContext } from 'react'
+import { Model, SceneLoaderContext, SceneLoaderContextProvider } from 'react-babylonjs'
 
 const ProgressFallback = (props) => {
-  const sceneLoaderContext = useContext(SceneLoaderContext);
+  const sceneLoaderContext = useContext(SceneLoaderContext)
 
-  let loadProgress = 0;
+  let loadProgress = 0
   if (sceneLoaderContext.lastProgress) {
-    const progress = sceneLoaderContext.lastProgress;
-    loadProgress = progress.lengthComputable
-      ? progress.loaded / progress.total
-      : progress.loaded / 10000; // TODO: provide option to input file size for proper loading.
+    const progress = sceneLoaderContext.lastProgress
+    loadProgress = progress.loaded / progress.total
   }
 
   return (
-    <transformNode
-      name="load-mesh"
-      rotation={props.rotation}
-      position={props.center}
-    >
+    <transformNode name="load-mesh" rotation={props.rotation} position={props.center}>
       <box
         key="progress"
         name="boxProgress"
@@ -49,8 +39,8 @@ const ProgressFallback = (props) => {
         position={new Vector3(0, 0, props.scaleTo / -60)}
       />
     </transformNode>
-  );
-};
+  )
+}
 
 const ScaledModelWithProgress = (props) => {
   return (
@@ -76,7 +66,7 @@ const ScaledModelWithProgress = (props) => {
         />
       </Suspense>
     </SceneLoaderContextProvider>
-  );
-};
+  )
+}
 
-export default ScaledModelWithProgress;
+export default ScaledModelWithProgress
